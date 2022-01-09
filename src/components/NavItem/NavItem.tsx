@@ -1,4 +1,5 @@
 import { Flex, Menu, MenuButton, Link, Icon, Text } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
 type navProps = {
   navSize: string
   icon: any
@@ -7,6 +8,18 @@ type navProps = {
 }
 
 function NavItem({ navSize, icon, title, setShow }: navProps) {
+  const toast = useToast()
+
+  const logOut = () => {
+    if (title === 'Log Out')
+      toast({
+        title: 'Logged Out',
+        description: "You've succesfully logged out",
+        status: 'warning',
+        duration: 9000,
+        isClosable: true,
+      })
+  }
   return (
     <Flex
       mt={30}
@@ -17,7 +30,7 @@ function NavItem({ navSize, icon, title, setShow }: navProps) {
     >
       <Menu placement="right">
         <Link>
-          <MenuButton>
+          <MenuButton onClick={logOut}>
             <Flex>
               <Icon as={icon} />
               <Text display={navSize === 'small' ? 'none' : 'block'}>
