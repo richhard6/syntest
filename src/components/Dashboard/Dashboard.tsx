@@ -52,6 +52,8 @@ function Dashboard({ setShow }: AppProps) {
   useEffect(() => {
     checkUser()
     setShow('Home')
+
+    console.log(log)
   }, [log, setShow])
 
   return (
@@ -116,6 +118,7 @@ function Dashboard({ setShow }: AppProps) {
             icon={FaSignInAlt}
             title="Log Out"
             setShow={setShow}
+            setCurrentUser={setCurrentUser}
           />
         )}
         {currentUser.name === '' && (

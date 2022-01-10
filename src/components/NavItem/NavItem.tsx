@@ -10,24 +10,12 @@ type navProps = {
   icon: any
   title: string
   setShow: (val: string) => void
+  setCurrentUser?: (val: IUser) => void
 }
 
-function NavItem({ navSize, icon, title, setShow }: navProps) {
+function NavItem({ navSize, icon, title, setShow, setCurrentUser }: navProps) {
   const toast = useToast()
   const { log, toggleLog } = useContext(Context)
-
-  const checkUser = () => {
-    const getCurrentUser: IUser = JSON.parse(
-      sessionStorage.getItem('currentUser')!
-    )
-
-    if (!getCurrentUser) console.log('nadie logeaedo')
-  }
-
-  useEffect(() => {
-    checkUser()
-    setShow('Home')
-  }, [log, setShow])
 
   const logOut = () => {
     if (title === 'Log Out') {
@@ -39,9 +27,15 @@ function NavItem({ navSize, icon, title, setShow }: navProps) {
         isClosable: true,
       })
 
-      if (toggleLog) toggleLog()
       setShow('Home')
-      console.log(log)
+
+      if (setCurrentUser)
+        setCurrentUser({
+          name: '',
+          password: '',
+          professional: false,
+          scheduledAppointments: [],
+        })
     }
   }
   return (
