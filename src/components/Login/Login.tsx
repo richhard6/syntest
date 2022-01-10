@@ -51,7 +51,7 @@ function Login() {
         setLogged(true)
         toast({
           title: 'Logged In',
-          description: 'Please refresh the browser',
+          description: 'Welcome :)!',
           status: 'success',
           duration: 9000,
           isClosable: true,

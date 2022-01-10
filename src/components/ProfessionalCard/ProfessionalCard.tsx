@@ -74,13 +74,15 @@ function ProfessionalCard({ professional }: profCard) {
 
     localStorage.setItem(appointment.scheduledBy, JSON.stringify(isMatchUser))
 
-    const updatedStorage = localStorage.getItem(appointment.scheduledBy)
+    const updatedStorage: string | null = localStorage.getItem(
+      appointment.scheduledBy
+    )
 
-    sessionStorage.setItem('currentUser', updatedStorage!)
+    if (updatedStorage) sessionStorage.setItem('currentUser', updatedStorage)
 
     toast({
       title: 'Appointment Created',
-      description: 'Please log out and log in to check the appointments :(',
+      description: 'Please go to the appointments tab to view and modify it',
       status: 'success',
       duration: 9000,
       isClosable: true,
