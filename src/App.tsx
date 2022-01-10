@@ -1,4 +1,5 @@
 import { ChakraProvider, Flex } from '@chakra-ui/react'
+import { ContextProvider } from './context/Context'
 import Dashboard from './components/Dashboard/Dashboard'
 import { useState, useEffect } from 'react'
 import ProfessionalsList from './components/ProfessionalsList/ProfessionalsList'
@@ -16,15 +17,17 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Flex flexDirection="row">
-        <Dashboard setShow={setShow} show={show} />
-        {show === 'Home' && <Welcome />}
-        {show === 'Professionals' && <ProfessionalsList />}
-        {show === 'Appointments' && <AppointmentList />}
-        {show === 'Schedule' && <div>this is hey</div>}
-        {show === 'Log In' && <Login />}
-        {show === 'Create Account' && <CreateAccount />}
-      </Flex>
+      <ContextProvider>
+        <Flex flexDirection="row">
+          <Dashboard setShow={setShow} show={show} />
+          {show === 'Home' && <Welcome />}
+          {show === 'Professionals' && <ProfessionalsList />}
+          {show === 'Appointments' && <AppointmentList />}
+          {show === 'Schedule' && <div>this is hey</div>}
+          {show === 'Log In' && <Login />}
+          {show === 'Create Account' && <CreateAccount />}
+        </Flex>
+      </ContextProvider>
     </ChakraProvider>
   )
 }

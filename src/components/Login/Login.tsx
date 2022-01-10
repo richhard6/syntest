@@ -1,22 +1,28 @@
 import { Flex, Input, Button } from '@chakra-ui/react'
+import { ILog } from '../../interfaces/interfaces'
 
 import { useState, useEffect } from 'react'
 import { IUser } from '../../interfaces/interfaces'
 import { useToast } from '@chakra-ui/react'
-
-interface ILog {
-  name: string
-  password: string
-}
+import { useContext } from 'react'
+import Context from '../../context/Context'
 
 function Login() {
   const [user, setUser] = useState<ILog>({ name: '', password: '' })
   const [logged, setLogged] = useState<Boolean>(false)
+  const { log, toggleLog } = useContext(Context)
   const toast = useToast()
+
   useEffect(() => {
+    if (log) console.log('HEY')
+
     //hau q hacer que cuiando logee se refresque todo
-    console.log('HEY')
-  }, [logged])
+  }, [log])
+
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (toggleLog) toggleLog()
+  }
 
   const allStorage = (): any => {
     let values = [],
@@ -31,7 +37,7 @@ function Login() {
     return values
   }
 
-  const logIn = (): void => {
+  const logIn = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const allUsers: IUser[] = allStorage()
 
     const isMatch: IUser | undefined = allUsers.find(
@@ -51,6 +57,7 @@ function Login() {
           isClosable: true,
         })
         sessionStorage.setItem('currentUser', JSON.stringify(isMatch))
+        handleOnClick(e)
       } else {
         toast({
           title: 'Wrong password',

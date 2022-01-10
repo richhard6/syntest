@@ -1,5 +1,10 @@
 import { Flex, Menu, MenuButton, Link, Icon, Text } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+import { useContext, useEffect } from 'react'
+
+import { IUser } from '../../interfaces/interfaces'
+import Context from '../../context/Context'
+
 type navProps = {
   navSize: string
   icon: any
@@ -9,9 +14,23 @@ type navProps = {
 
 function NavItem({ navSize, icon, title, setShow }: navProps) {
   const toast = useToast()
+  const { log, toggleLog } = useContext(Context)
+
+  const checkUser = () => {
+    const getCurrentUser: IUser = JSON.parse(
+      sessionStorage.getItem('currentUser')!
+    )
+
+    if (!getCurrentUser) console.log('nadie logeaedo')
+  }
+
+  useEffect(() => {
+    checkUser()
+    setShow('Home')
+  }, [log, setShow])
 
   const logOut = () => {
-    if (title === 'Log Out')
+    if (title === 'Log Out') {
       toast({
         title: 'Logged Out',
         description: "You've succesfully logged out",
@@ -19,6 +38,11 @@ function NavItem({ navSize, icon, title, setShow }: navProps) {
         duration: 9000,
         isClosable: true,
       })
+
+      if (toggleLog) toggleLog()
+      setShow('Home')
+      console.log(log)
+    }
   }
   return (
     <Flex

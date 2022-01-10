@@ -16,3 +16,8 @@ export interface IUser {
   professional: Boolean
   scheduledAppointments: IAppointment[]
 }
+
+export interface ILog {
+  name: string
+  password: string
+}

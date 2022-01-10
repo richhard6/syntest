@@ -18,6 +18,8 @@ import { IUser } from '../../interfaces/interfaces'
 import { AiFillFolderOpen } from 'react-icons/ai'
 
 import NavItem from '../NavItem/NavItem'
+import { useContext } from 'react'
+import Context from '../../context/Context'
 
 interface AppProps {
   show: string
@@ -28,23 +30,29 @@ function Dashboard({ setShow }: AppProps) {
   //tengo que actualizar el dashboard, al realizar el cambio en el componente login ( noestan conectados)
   const [navSize, changeNavSize] = useState<string>('large')
 
+  const { log } = useContext(Context)
+
   const [currentUser, setCurrentUser] = useState<IUser>({
     name: '',
     password: '',
     professional: false,
     scheduledAppointments: [],
   })
+
   const checkUser = () => {
     const getCurrentUser: IUser = JSON.parse(
       sessionStorage.getItem('currentUser')!
     )
 
     if (getCurrentUser) setCurrentUser(getCurrentUser)
+
+    console.log('probando')
   }
 
   useEffect(() => {
     checkUser()
-  }, [])
+    setShow('Home')
+  }, [log, setShow])
 
   return (
     <Flex
