@@ -26,7 +26,7 @@ function ProfessionalCard({ professional }: profCard) {
     professional: professional.name,
     scheduledDate: startDate,
     createdAt: Date.now(),
-    modified: false,
+    modified: false, //accepted?
   })
 
   useEffect(() => {
@@ -39,7 +39,9 @@ function ProfessionalCard({ professional }: profCard) {
         scheduledBy: getCurrentUser.name,
       }
     })
-  }, [])
+  }, []) // si es doctor, el nombre del profesional  by tiene que cambiar  x el del paciente
+
+  //no mostrar el nombre del profesional qe ste logeado. . . .
 
   const saveAppointments = (): void => {
     const allStorage = (): any => {
@@ -55,12 +57,14 @@ function ProfessionalCard({ professional }: profCard) {
       return values
     }
     const allUsers: IUser[] = allStorage()
+
     const isMatchProf: IUser | undefined = allUsers.find(
       (element) => element.name === professional.name
     )
     const isMatchUser: IUser | undefined = allUsers.find(
       (element) => element.name === appointment.scheduledBy
     )
+
     isMatchProf?.scheduledAppointments.push(appointment)
     isMatchUser?.scheduledAppointments.push(appointment)
     console.log(isMatchProf)
@@ -69,6 +73,11 @@ function ProfessionalCard({ professional }: profCard) {
       localStorage.setItem(professional.name, JSON.stringify(isMatchProf))
 
     localStorage.setItem(appointment.scheduledBy, JSON.stringify(isMatchUser))
+
+    const updatedStorage = localStorage.getItem(appointment.scheduledBy)
+
+    sessionStorage.setItem('currentUser', updatedStorage!)
+
     toast({
       title: 'Appointment Created',
       description: 'Please log out and log in to check the appointments :(',
