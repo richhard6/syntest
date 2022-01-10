@@ -24,7 +24,7 @@ function Login() {
     if (toggleLog) toggleLog()
   }
 
-  const allStorage = (): any => {
+  const allStorage = (): IUser[] => {
     let values = [],
       keys = Object.keys(localStorage),
       i = keys.length
@@ -47,7 +47,6 @@ function Login() {
     if (isMatch) {
       const succesfull = isMatch.password === user.password
       if (succesfull) {
-        console.log('te logeaste mamaguevo')
         setLogged(true)
         toast({
           title: 'Logged In',
