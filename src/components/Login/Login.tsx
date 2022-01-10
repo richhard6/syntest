@@ -9,15 +9,9 @@ import Context from '../../context/Context'
 
 function Login() {
   const [user, setUser] = useState<ILog>({ name: '', password: '' })
-  const [logged, setLogged] = useState<Boolean>(false)
-  const { log, toggleLog } = useContext(Context)
+
+  const { toggleLog } = useContext(Context)
   const toast = useToast()
-
-  useEffect(() => {
-    if (log) console.log('HEY')
-
-    //hau q hacer que cuiando logee se refresque todo
-  }, [log])
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -47,7 +41,6 @@ function Login() {
     if (isMatch) {
       const succesfull = isMatch.password === user.password
       if (succesfull) {
-        setLogged(true)
         toast({
           title: 'Logged In',
           description: 'Welcome :)!',
