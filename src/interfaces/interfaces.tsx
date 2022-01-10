@@ -10,6 +10,10 @@ export interface IAppointment {
   modified: Boolean
 }
 
+export interface IAppo {
+  appointment: IAppointment
+}
+
 export interface IUser {
   name: string
   password: string

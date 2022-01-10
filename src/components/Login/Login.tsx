@@ -1,7 +1,7 @@
 import { Flex, Input, Button } from '@chakra-ui/react'
 import { ILog } from '../../interfaces/interfaces'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { IUser } from '../../interfaces/interfaces'
 import { useToast } from '@chakra-ui/react'
 import { useContext } from 'react'

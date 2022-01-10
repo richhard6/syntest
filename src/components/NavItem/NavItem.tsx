@@ -1,12 +1,10 @@
 import { Flex, Menu, MenuButton, Link, Icon, Text } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
-import { useContext, useEffect } from 'react'
 
 import { IUser } from '../../interfaces/interfaces'
-import Context from '../../context/Context'
 
 type navProps = {
-  navSize: string
+  navSize: string // abstraer
   icon: any
   title: string
   setShow: (val: string) => void
@@ -15,7 +13,6 @@ type navProps = {
 
 function NavItem({ navSize, icon, title, setShow, setCurrentUser }: navProps) {
   const toast = useToast()
-  const { log, toggleLog } = useContext(Context)
 
   const logOut = () => {
     if (title === 'Log Out') {

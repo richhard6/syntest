@@ -6,7 +6,7 @@ function Welcome() {
   const { dark, toggleDark } = useContext(Context)
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (toggleDark) toggleDark()
+    if (toggleDark) toggleDark() //esto sera un botonsito en la sidebar, YA TODA LA APP SABE SI DARK O LIGHT MODE
   }
   return (
     <Box ml="200px" w="40vw" mt="5rem">

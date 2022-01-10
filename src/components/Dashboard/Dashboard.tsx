@@ -27,7 +27,6 @@ interface AppProps {
 }
 
 function Dashboard({ setShow }: AppProps) {
-  //tengo que actualizar el dashboard, al realizar el cambio en el componente login ( noestan conectados)
   const [navSize, changeNavSize] = useState<string>('large')
 
   const { log } = useContext(Context)
@@ -45,15 +44,11 @@ function Dashboard({ setShow }: AppProps) {
     )
 
     if (getCurrentUser) setCurrentUser(getCurrentUser)
-
-    console.log('probando')
   }
 
   useEffect(() => {
     checkUser()
     setShow('Home')
-
-    console.log(log)
   }, [log, setShow])
 
   return (

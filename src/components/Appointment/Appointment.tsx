@@ -1,17 +1,6 @@
 import { ListItem, ListIcon, Text } from '@chakra-ui/react'
 import { StarIcon } from '@chakra-ui/icons'
-
-interface IAppointment {
-  scheduledBy: string
-  professional: string
-  scheduledDate: Date | null
-  createdAt: number
-  modified: Boolean
-}
-
-interface IAppo {
-  appointment: IAppointment
-}
+import { IAppo } from '../../interfaces/interfaces'
 
 function Appointment({ appointment }: IAppo) {
   return (

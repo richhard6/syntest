@@ -8,7 +8,7 @@ import { Avatar, Flex, Button } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 
 type profCard = {
-  professional: IProfessional
+  professional: IProfessional //abstraer typos
 }
 
 function ProfessionalCard({ professional }: profCard) {
@@ -19,7 +19,7 @@ function ProfessionalCard({ professional }: profCard) {
     password: '',
     professional: false,
     scheduledAppointments: [],
-  })
+  }) //es necesario esto?
 
   const [appointment, setAppointment] = useState<IAppointment>({
     scheduledBy: currentUser.name,
@@ -87,8 +87,6 @@ function ProfessionalCard({ professional }: profCard) {
       duration: 9000,
       isClosable: true,
     })
-
-    //Aqui tengo que volver a recoger lops datos del localStorage para no tener que  deslogeasr y logeasr
   }
   return (
     <Flex justifyContent="center" w="100vw" mt="5rem">

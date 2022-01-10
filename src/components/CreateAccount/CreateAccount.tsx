@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useToast } from '@chakra-ui/react'
 
 function CreateAccount() {
-  //hay que hacer feedbacks de crear cuenta ... una green vaina
   const [user, setUser] = useState<IUser>({
     name: '',
     password: '',
@@ -39,6 +38,7 @@ function CreateAccount() {
         onChange={(e) =>
           setUser((prevUser) => {
             return {
+              //same
               ...prevUser,
               name: e.target.value,
             }
@@ -52,7 +52,7 @@ function CreateAccount() {
         onChange={(e) =>
           setUser((prevUser) => {
             return {
-              ...prevUser,
+              ...prevUser, //same
               password: e.target.value,
             }
           })
@@ -67,7 +67,7 @@ function CreateAccount() {
             onChange={() =>
               setUser((prevUser) => {
                 return {
-                  ...prevUser,
+                  ...prevUser, //poner en funcion.
                   professional: true,
                 }
               })
@@ -81,7 +81,7 @@ function CreateAccount() {
             onChange={() =>
               setUser((prevUser) => {
                 return {
-                  ...prevUser,
+                  ...prevUser, //same
                   professional: false,
                 }
               })
