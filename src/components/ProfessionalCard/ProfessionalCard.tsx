@@ -61,6 +61,16 @@ function ProfessionalCard({ professional }: profCard) {
     })
   }, [professional.name])
 
+  const handleDate = (date: Date | null): void => {
+    setStartDate(date) //pilla simepre la anterior... BIG BUG
+    setAppointment((prevAppointment) => {
+      return {
+        ...prevAppointment,
+        scheduledDate: startDate,
+      }
+    })
+  }
+
   //SI QUE ESTA GUARDANDO MLAS CITAS PERO SIEMPRE PONE EL DIA ACTUAL!
 
   const saveAppointments = (): void => {
@@ -122,7 +132,7 @@ function ProfessionalCard({ professional }: profCard) {
       {professional.specialty}
       <DatePicker
         selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        onChange={(date) => handleDate(date)}
         timeInputLabel="Time:"
         dateFormat="MM/dd/yyyy h:mm aa"
         showTimeSelect
