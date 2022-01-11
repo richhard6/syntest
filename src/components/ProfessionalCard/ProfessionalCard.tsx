@@ -67,7 +67,6 @@ function ProfessionalCard({ professional }: profCard) {
 
     isMatchProf?.scheduledAppointments.push(appointment)
     isMatchUser?.scheduledAppointments.push(appointment)
-    console.log(isMatchProf)
 
     if (isMatchProf)
       localStorage.setItem(professional.name, JSON.stringify(isMatchProf))
