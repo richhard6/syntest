@@ -13,14 +13,24 @@ function CreateAccount() {
   const toast = useToast()
 
   const createUser = (): void => {
-    localStorage.setItem(user.name, JSON.stringify(user))
-    toast({
-      title: 'Account created.',
-      description: "We've created your account for you.",
-      status: 'success',
-      duration: 9000,
-      isClosable: true,
-    })
+    if (user.name && user.password !== '') {
+      localStorage.setItem(user.name, JSON.stringify(user))
+      toast({
+        title: 'Account created.',
+        description: "We've created your account for you.",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
+    } else {
+      toast({
+        title: 'Check fields',
+        description: 'Fill all the fields',
+        status: 'warning',
+        duration: 9000,
+        isClosable: true,
+      })
+    }
   }
 
   return (

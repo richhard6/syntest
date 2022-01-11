@@ -10,7 +10,8 @@ function ProfessionalsList() {
     { name: 'Prof', specialty: 'neurology' },
   ]
 
-  //Al darle click a alguni de ellos se deberia abrir el calendario para poder seleccionar la fecha .
+  //seria coool que si creas un usuario tipo professional ya te aparezca aqui
+  //crear automaticamente en el localStorage todos estos personajes y tirar de ahi, es una opcion
   return (
     <Box ml="200px" w="40vw" mt="5rem">
       {professionals.map((professional, index) => (

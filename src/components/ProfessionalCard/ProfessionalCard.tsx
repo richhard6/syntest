@@ -21,6 +21,13 @@ function ProfessionalCard({ professional }: profCard) {
     scheduledAppointments: [],
   }) //es necesario esto?
 
+  const [currentProfessional, setCurrentProfessional] = useState<IUser>({
+    name: '',
+    password: '',
+    professional: false,
+    scheduledAppointments: [],
+  })
+
   const [appointment, setAppointment] = useState<IAppointment>({
     scheduledBy: currentUser.name,
     professional: professional.name,
@@ -40,6 +47,19 @@ function ProfessionalCard({ professional }: profCard) {
       }
     })
   }, [])
+
+  useEffect(() => {
+    const getCurrentProfessional: IUser = JSON.parse(
+      localStorage.getItem(professional.name)!
+    )
+
+    setCurrentProfessional((prevProfessional) => {
+      return {
+        ...prevProfessional,
+        ...getCurrentProfessional,
+      }
+    })
+  }, [professional.name])
 
   const saveAppointments = (): void => {
     const allStorage = (): any => {
@@ -85,20 +105,30 @@ function ProfessionalCard({ professional }: profCard) {
       isClosable: true,
     })
   }
+
+  const arrayToDateArray = (): Date[] => {
+    const dateArray: Date[] = currentProfessional.scheduledAppointments.map(
+      (appointment) => new Date(appointment.scheduledDate!)
+    )
+
+    return dateArray
+  }
+
   return (
-    <Flex justifyContent="center" w="100vw" mt="5rem">
+    <Flex justifyContent="center" w="40vw" mt="5rem">
       <Avatar mr="5px" size="sm"></Avatar> {professional.name}
       {professional.specialty}
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        timeInputLabel="Time:"
+        dateFormat="MM/dd/yyyy h:mm aa"
+        showTimeSelect
+        /*  excludeTimes={[new Date('2022-01-11T10:53:23Z')]} */
+
+        highlightDates={arrayToDateArray()}
+      />
       <Button onClick={saveAppointments}>schedule!</Button>
-      <>
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          timeInputLabel="Time:"
-          dateFormat="MM/dd/yyyy h:mm aa"
-          showTimeInput
-        />
-      </>
     </Flex>
   )
 }
