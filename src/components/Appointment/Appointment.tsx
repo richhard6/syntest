@@ -1,8 +1,7 @@
 import { ListItem, ListIcon, Text } from '@chakra-ui/react'
 import { StarIcon } from '@chakra-ui/icons'
-import { IAppo, IUser } from '../../interfaces/interfaces'
-
-import { useEffect, useState } from 'react'
+import { IAppo } from '../../interfaces/interfaces'
+import moment from 'moment'
 
 import { useUser } from '../../hooks/useUser'
 
@@ -18,7 +17,9 @@ function Appointment({ appointment }: IAppo) {
           ? appointment.scheduledBy
           : appointment.professional}
       </Text>
-      <Text> {appointment.scheduledDate}</Text>
+      <Text>
+        {moment(appointment.scheduledDate).format('MMMM Do YYYY, h:mm:ss a')}
+      </Text>
     </ListItem>
   )
 }

@@ -39,9 +39,7 @@ function ProfessionalCard({ professional }: profCard) {
         scheduledBy: getCurrentUser.name,
       }
     })
-  }, []) // si es doctor, el nombre del profesional  by tiene que cambiar  x el del paciente
-
-  //no mostrar el nombre del profesional qe ste logeado. . . .
+  }, [])
 
   const saveAppointments = (): void => {
     const allStorage = (): any => {
@@ -89,7 +87,7 @@ function ProfessionalCard({ professional }: profCard) {
   }
   return (
     <Flex justifyContent="center" w="100vw" mt="5rem">
-      <Avatar mr="5px" size="sm"></Avatar> {professional.name}{' '}
+      <Avatar mr="5px" size="sm"></Avatar> {professional.name}
       {professional.specialty}
       <Button onClick={saveAppointments}>schedule!</Button>
       <>
