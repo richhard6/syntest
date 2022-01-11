@@ -61,6 +61,8 @@ function ProfessionalCard({ professional }: profCard) {
     })
   }, [professional.name])
 
+  //SI QUE ESTA GUARDANDO MLAS CITAS PERO SIEMPRE PONE EL DIA ACTUAL!
+
   const saveAppointments = (): void => {
     const allStorage = (): any => {
       let values = [],
@@ -125,7 +127,7 @@ function ProfessionalCard({ professional }: profCard) {
         dateFormat="MM/dd/yyyy h:mm aa"
         showTimeSelect
         /*  excludeTimes={[new Date('2022-01-11T10:53:23Z')]} */
-
+        //problema con el componente datepicker, no cambia la fecha....
         highlightDates={arrayToDateArray()}
       />
       <Button onClick={saveAppointments}>schedule!</Button>
