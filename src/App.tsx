@@ -1,15 +1,18 @@
 import { ChakraProvider, Flex } from '@chakra-ui/react'
 import { ContextProvider } from './context/Context'
 import Dashboard from './components/Dashboard/Dashboard'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ProfessionalsList from './components/ProfessionalsList/ProfessionalsList'
 import CreateAccount from './components/CreateAccount/CreateAccount'
 import Login from './components/Login/Login'
 import AppointmentList from './components/AppointmentList/AppointmentList'
 import Welcome from './components/Welcome/Welcome'
 
+import Context from './context/Context'
+
 function App() {
   const [show, setShow] = useState<string>('Home')
+  const { dark } = useContext(Context)
 
   useEffect(() => {
     if (show === 'Log Out') sessionStorage.clear()

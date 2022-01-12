@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { IUser, IAppointment } from '../../interfaces/interfaces'
 
-import { Avatar, Flex, Button } from '@chakra-ui/react'
+import { Avatar, Flex, Button, Text } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 
 type profCard = {
@@ -71,8 +71,8 @@ function ProfessionalCard({ professional }: profCard) {
     })
   }
 
-  //SI QUE ESTA GUARDANDO MLAS CITAS PERO SIEMPRE PONE EL DIA ACTUAL!
-
+  //SI QUE ESTA GUARDANDO MLAS CITAS PERO AL DARLE CLICK UNA VEZ no registra, al darle la segunda se queda con la eleccion anterior...
+  //problema de actialozacion de datos
   const saveAppointments = (): void => {
     const allStorage = (): any => {
       let values = [],
@@ -111,7 +111,7 @@ function ProfessionalCard({ professional }: profCard) {
 
     toast({
       title: 'Appointment Created',
-      description: 'Please go to the appointments tab to view and modify it',
+      description: 'Please go to the appointments tab to view or modify it',
       status: 'success',
       duration: 9000,
       isClosable: true,
@@ -127,9 +127,21 @@ function ProfessionalCard({ professional }: profCard) {
   }
 
   return (
-    <Flex justifyContent="center" w="40vw" mt="5rem">
-      <Avatar mr="5px" size="sm"></Avatar> {professional.name}
-      {professional.specialty}
+    <Flex
+      justifyContent="center"
+      w="40vw"
+      mt="5rem"
+      border="1px"
+      borderColor="gray.200"
+      p="0.5rem"
+      borderRadius="14px"
+    >
+      <Avatar mr="16px" size="sm"></Avatar>
+      <Flex direction="column">
+        <Text fontWeight="bold">{professional.name}</Text>
+        <Text fontWeight="hairline">{professional.specialty}</Text>
+      </Flex>
+
       <DatePicker
         selected={startDate}
         onChange={(date) => handleDate(date)}
@@ -140,6 +152,7 @@ function ProfessionalCard({ professional }: profCard) {
         //problema con el componente datepicker, no cambia la fecha....
         highlightDates={arrayToDateArray()}
       />
+
       <Button onClick={saveAppointments}>schedule!</Button>
     </Flex>
   )

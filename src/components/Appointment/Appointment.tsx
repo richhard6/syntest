@@ -12,7 +12,7 @@ function Appointment({ appointment }: IAppo) {
     <ListItem>
       <ListIcon as={StarIcon} color="green.500" />
 
-      <Text>
+      <Text fontWeight="bold">
         {currentUser.professional === true
           ? appointment.scheduledBy
           : appointment.professional}

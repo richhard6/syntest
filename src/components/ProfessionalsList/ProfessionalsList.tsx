@@ -1,6 +1,6 @@
 import ProfessionalCard from '../ProfessionalCard/ProfessionalCard'
 import { IProfessional } from '../../interfaces/interfaces'
-import { Box } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 
 function ProfessionalsList() {
   const professionals: IProfessional[] = [
@@ -14,6 +14,7 @@ function ProfessionalsList() {
   //crear automaticamente en el localStorage todos estos personajes y tirar de ahi, es una opcion
   return (
     <Box ml="200px" w="40vw" mt="5rem">
+      <Text ms="3rem">Click date to schedule ...</Text>
       {professionals.map((professional, index) => (
         <ProfessionalCard professional={professional} key={index} />
       ))}
